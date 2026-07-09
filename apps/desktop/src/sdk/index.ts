@@ -177,16 +177,16 @@ export { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export { Textarea } from '@/components/ui/textarea'
 export { Tip, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 export type { GatewayEventListener } from '@/contrib/events'
+export type { HermesPlugin, PluginContext, PluginContribution, PluginRestOptions, PluginStorage } from '@/contrib/plugin'
+
+// -- contracts ----------------------------------------------------------------
+
 /** Mount-scoped contribution: while the rendering component is mounted, its
  *  children render in the target area's slot; unmount disposes it. Use for
  *  page-owned chrome (a page's titlebar control leaves with the page) —
  *  `ctx.register` stays the door for permanent contributions. Namespace the
  *  id with your plugin slug (`kanban:board-switcher`). */
 export { Contribute, type ContributeProps } from '@/contrib/react/contribute'
-
-// -- contracts ----------------------------------------------------------------
-
-export type { HermesPlugin, PluginContext, PluginContribution, PluginRestOptions, PluginStorage } from '@/contrib/plugin'
 export type { Contribution } from '@/contrib/types'
 /** Localized copy — plugins reuse the app's strings (and stay translatable). */
 export { useI18n } from '@/i18n'
@@ -198,18 +198,18 @@ export { type KeybindContribution, KEYBINDS_AREA } from '@/lib/keybinds/actions'
  *  authors) + its translucent tag fill — so plugin-rendered identities read
  *  the same hue as everywhere else. */
 export { profileColor, profileColorSoft } from '@/lib/profile-color'
-/** Canonical time formatting — every timestamp/age string in the app comes
- *  from these (localized `Intl` under the hood). Don't hand-roll "Xm ago". */
-export { coarseElapsed, fmtDateTime, fmtDayTime, relativeTime } from '@/lib/time'
+/** The app's own gateway-readiness evaluation (setup.status +
+ *  setup.runtime_check, reconciled) — pass `host.request`. Don't hand-roll
+ *  readiness from raw RPC shapes. */
+export { evaluateRuntimeReadiness, type RuntimeReadinessResult } from '@/lib/runtime-readiness'
 
 export const PANES_AREA = 'panes'
 export const STATUSBAR_AREAS = { left: 'statusBar.left', right: 'statusBar.right' } as const
 export const TITLEBAR_AREAS = { center: 'titleBar.center', left: 'titleBar.left', right: 'titleBar.right' } as const
 
-/** The app's own gateway-readiness evaluation (setup.status +
- *  setup.runtime_check, reconciled) — pass `host.request`. Don't hand-roll
- *  readiness from raw RPC shapes. */
-export { evaluateRuntimeReadiness, type RuntimeReadinessResult } from '@/lib/runtime-readiness'
+/** Canonical time formatting — every timestamp/age string in the app comes
+ *  from these (localized `Intl` under the hood). Don't hand-roll "Xm ago". */
+export { coarseElapsed, fmtDateTime, fmtDayTime, relativeTime } from '@/lib/time'
 export { cn } from '@/lib/utils'
 export { THEMES_AREA } from '@/themes/user-themes'
 export type { RpcEvent, StatusResponse } from '@/types/hermes'
